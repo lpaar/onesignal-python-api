@@ -9,35 +9,23 @@
 """
 
 
-import re  # noqa: F401
-import sys  # noqa: F401
 
-from onesignal.model_utils import (  # noqa: F401
-    ApiTypeError,
-    ModelComposed,
-    ModelNormal,
-    ModelSimple,
-    cached_property,
-    change_keys_js_to_python,
-    convert_js_args_to_python_args,
-    date,
-    datetime,
-    file_type,
-    none_type,
-    validate_get_composed_info,
-    OpenApiModel
-)
 from onesignal.exceptions import ApiAttributeError
+from onesignal.model_utils import (ApiTypeError, ModelNormal,  # noqa: F401
+                                   OpenApiModel, cached_property,
+                                   convert_js_args_to_python_args, date,
+                                   datetime, none_type)
 
 
 def lazy_import():
-    from onesignal.model.basic_notification_all_of_android_background_layout import BasicNotificationAllOfAndroidBackgroundLayout
+    from onesignal.model.basic_notification_all_of_android_background_layout import \
+        BasicNotificationAllOfAndroidBackgroundLayout
     from onesignal.model.button import Button
-    from onesignal.model.filter import Filter
+    from onesignal.model.filter_expressions import FilterExpressions
     from onesignal.model.string_map import StringMap
     globals()['BasicNotificationAllOfAndroidBackgroundLayout'] = BasicNotificationAllOfAndroidBackgroundLayout
     globals()['Button'] = Button
-    globals()['Filter'] = Filter
+    globals()['FilterExpressions'] = FilterExpressions
     globals()['StringMap'] = StringMap
 
 
@@ -188,7 +176,7 @@ class BasicNotificationAllOf(ModelNormal):
             'include_unsubscribed': (bool,),  # noqa: E501
             'sms_from': (str, none_type,),  # noqa: E501
             'sms_media_urls': ([str], none_type,),  # noqa: E501
-            'filters': ([Filter], none_type,),  # noqa: E501
+            'filters': ([FilterExpressions], none_type,),  # noqa: E501
             'custom_data': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
@@ -425,7 +413,7 @@ class BasicNotificationAllOf(ModelNormal):
             include_unsubscribed (bool): Channel: Email Default is `false`. This field is used to send transactional notifications. If set to `true`, this notification will also be sent to unsubscribed emails. If a `template_id` is provided, the `include_unsubscribed` value from the template will be inherited. If you are using a third-party ESP, this field requires the ESP's list of unsubscribed emails to be cleared.. [optional]  # noqa: E501
             sms_from (str, none_type): Channel: SMS Phone Number used to send SMS. Should be a registered Twilio phone number in E.164 format. . [optional]  # noqa: E501
             sms_media_urls ([str], none_type): Channel: SMS URLs for the media files to be attached to the SMS content. Limit: 10 media urls with a total max. size of 5MBs. . [optional]  # noqa: E501
-            filters ([Filter], none_type): [optional]  # noqa: E501
+            filters ([FilterExpressions], none_type): [optional]  # noqa: E501
             custom_data ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Channel: All JSON object that can be used as a source of message personalization data for fields that support tag variable substitution. Push, SMS: Can accept up to 2048 bytes of valid JSON. Email: Can accept up to 10000 bytes of valid JSON. Example: {\"order_id\": 123, \"currency\": \"USD\", \"amount\": 25} . [optional]  # noqa: E501
         """
 
@@ -602,7 +590,7 @@ class BasicNotificationAllOf(ModelNormal):
             include_unsubscribed (bool): Channel: Email Default is `false`. This field is used to send transactional notifications. If set to `true`, this notification will also be sent to unsubscribed emails. If a `template_id` is provided, the `include_unsubscribed` value from the template will be inherited. If you are using a third-party ESP, this field requires the ESP's list of unsubscribed emails to be cleared.. [optional]  # noqa: E501
             sms_from (str, none_type): Channel: SMS Phone Number used to send SMS. Should be a registered Twilio phone number in E.164 format. . [optional]  # noqa: E501
             sms_media_urls ([str], none_type): Channel: SMS URLs for the media files to be attached to the SMS content. Limit: 10 media urls with a total max. size of 5MBs. . [optional]  # noqa: E501
-            filters ([Filter], none_type): [optional]  # noqa: E501
+            filters ([FilterExpressions], none_type): [optional]  # noqa: E501
             custom_data ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Channel: All JSON object that can be used as a source of message personalization data for fields that support tag variable substitution. Push, SMS: Can accept up to 2048 bytes of valid JSON. Email: Can accept up to 10000 bytes of valid JSON. Example: {\"order_id\": 123, \"currency\": \"USD\", \"amount\": 25} . [optional]  # noqa: E501
         """
 
